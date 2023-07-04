@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import WaetherCard from "./WaetherCard";
+import WaetherCard from "./WeatherCard.test";
 
 describe("WaetherCard", () => {
   test("matches snapshot", () => {
