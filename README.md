@@ -1,5 +1,5 @@
 # Waether_Info
-project exercise into react with Http request from API waether. [Try the app](https://)
+project exercise into react with Http request from API waether. [Try the app](https://weatherinforeactgromarant.netlify.app/)
 
 [See repository](https://github.com/Gromarant/Waether_Info)
 
