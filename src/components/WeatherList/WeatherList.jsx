@@ -73,27 +73,24 @@ const WeatherList = () => {
     const cardImage = weatherImages.find(weath => weath.weather.includes(weather.weather[0].description.toLowerCase()))?.img ?? 'Clear';
 
     return ( 
-      <>
-        <section className='container'>
-          <WeatherCard 
-            key={uuidv4()}
-            img={`/src/assets/${cardImage}.svg`}
-            temp={weather.main.temp}
-            city={weatherStates.city.name}
-            dt_txt={weather.dt_txt}
-            weather={weather.weather[0].description}
-            clouds={weather.clouds.all}
-            temp_max={weather.main.temp_max}
-            temp_min={weather.main.temp_min}
-            feels_like={weather.main.feels_like}
-          />
-        </section>
-      </>
+      <section  key={uuidv4()} className='container'>
+        <WeatherCard 
+          img={`/src/assets/${cardImage}.svg`}
+          temp={weather.main.temp}
+          city={weatherStates.city.name}
+          dt_txt={weather.dt_txt}
+          weather={weather.weather[0].description}
+          clouds={weather.clouds.all}
+          temp_max={weather.main.temp_max}
+          temp_min={weather.main.temp_min}
+          feels_like={weather.main.feels_like}
+        />
+      </section>
     )
   });
 
   return (<>
-    <Form handleSearch={handleSearch} input={input} setInput={setInput}/>
+    <Form key={uuidv4()} handleSearch={handleSearch} input={input} setInput={setInput}/>
     {paintWeather()}
   </>)
 };
