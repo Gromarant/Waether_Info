@@ -1,22 +1,26 @@
 import PropTypes from 'prop-types';
 
 const WeatherCard = ({ img, temp, city , dt_txt , weather , clouds , temp_max , temp_min , feels_like}) => {
-  return <article className="card">
-    <img src={img}/>
-    <p>fecha y hora: {dt_txt}</p>
-      <h2>{temp} Cº</h2>
-    <section className="flexCol">
-      <p>Localidad: {city}</p>
-      <p>Sensación térmica:{feels_like} Cº</p>
-      <p>Temp.Max: {temp_max} Cº</p> 
-      <p>Temp.Mim: {temp_min} Cº</p> 
-    </section>  
-    <section className="flexCol">
-      <h3>Estado del tiempo:</h3>
-      <p>Clima: {weather}</p>
-      <p>Nubes: {clouds}</p>
-    </section>  
-  </article>;
+  return (
+    <article className="card">
+      <section className="section_temperature">
+        <img src={img}/>
+        <h2>{temp} Cº</h2>
+        <p>fecha y hora: {dt_txt}</p>
+      </section>  
+      <section className="section_WeatherCentral">
+        <p>Localidad: <span>{city}</span></p>
+        <p>Sensación térmica: <span>{feels_like} Cº</span></p>
+        <p>Temp.Max: <span>{temp_max} Cº</span></p> 
+        <p>Temp.Mim: <span>{temp_min} Cº</span></p> 
+      </section>  
+      <section className="section_weatherState">
+        <h3>Estado del tiempo:</h3>
+        <p>Clima: <span>{weather}</span></p>
+        <p>Nubes: <span>{clouds}</span></p>
+      </section>  
+    </article>
+  );
 };
 
 WeatherCard.propTypes = {

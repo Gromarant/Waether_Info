@@ -20,36 +20,50 @@ const WeatherList = () => {
   }
 
   useEffect(() => {
-
-    if (location) {
-      axios.get(url).then(response => {
-        if (response) {
-          setWeatherStates(response.data)
-        }
-      })
+    try {
+      if (location) {
+        axios.get(url).then(response => {
+          if (response) {
+            setWeatherStates(response.data)
+          }
+        })
+      }
     }
+    catch(error) {
+      console.error(error);
+    }
+    
   }, [location])
   
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition( position => {
-
-      setUserCoords({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
+    try {
+      navigator.geolocation.getCurrentPosition( position => {
+  
+        setUserCoords({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        })
       })
-    })
+    }
+    catch(error) {
+      console.error(error);
+    }
   }, []);
 
   useEffect(() => {
-
-    if (userCoords.latitude && userCoords.longitude) {
-      
-      axios.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${userCoords.latitude}&lon=${userCoords.longitude}&limit=5&appid=${(import.meta.env.VITE_OPEN_WEATHER_API_KEY)}`)
-      .then(response => {
-        const [city] = response.data
-        setLocation(city.name);
-      })
+    try {
+      if (userCoords.latitude && userCoords.longitude) {
+        axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${userCoords.latitude}&lon=${userCoords.longitude}&units=metric&lang=sp,%20es&cnt=5&appid=${(import.meta.env.VITE_OPEN_WEATHER_API_KEY)}`)
+        .then(response => {
+          if (response) {
+            setWeatherStates(response.data)
+          }
+        })
+      }
+    }
+    catch(error) {
+      console.error(error);
     }
   }, [userCoords]);
   
@@ -58,18 +72,23 @@ const WeatherList = () => {
     
     const cardImage = weatherImages.find(weath => weath.weather.includes(weather.weather[0].description.toLowerCase()))?.img ?? 'Clear';
 
-    return ( <WeatherCard 
-        key={uuidv4()}
-        img={`/src/assets/${cardImage}.svg`}
-        temp={weather.main.temp}
-        city={weatherStates.city.name}
-        dt_txt={weather.dt_txt}
-        weather={weather.weather[0].description}
-        clouds={weather.clouds.all}
-        temp_max={weather.main.temp_max}
-        temp_min={weather.main.temp_min}
-        feels_like={weather.main.feels_like}
-      />
+    return ( 
+      <>
+        <section className='container'>
+          <WeatherCard 
+            key={uuidv4()}
+            img={`/src/assets/${cardImage}.svg`}
+            temp={weather.main.temp}
+            city={weatherStates.city.name}
+            dt_txt={weather.dt_txt}
+            weather={weather.weather[0].description}
+            clouds={weather.clouds.all}
+            temp_max={weather.main.temp_max}
+            temp_min={weather.main.temp_min}
+            feels_like={weather.main.feels_like}
+          />
+        </section>
+      </>
     )
   });
 

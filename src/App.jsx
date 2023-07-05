@@ -1,10 +1,14 @@
-import WeatherList from './components/WeatherList';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Main from './components/Main/Main';
 import './App.css'
 
 function App() {
   return (
     <>
-      <WeatherList />
+      <Header />
+        <Main />
+      <Footer />
     </>
   )
 }
