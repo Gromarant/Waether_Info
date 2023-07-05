@@ -81,8 +81,11 @@ For the next steps, the following improvements could be considered:
 - Implement data persistence using a database or local storage.
 - Improve the user interface with more attractive styles and layouts responsive.
 
+<br>
+<br>
+
 ---
-[<img align="left"  height="64" src="./src//assets/logo2023.png">](https://www.gromarant.com/)
+[<img align="left"  height="64" src="./src/assets/logo2023.png">](https://www.gromarant.com/)
 
 <br>
 
